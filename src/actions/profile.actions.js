@@ -13,7 +13,7 @@ export const getUserData = async (setIsFetching, onSuccess) => {
     const result = await api.getAuth(
       endpointsConfig.profile,
       config
-    );
+  );
 
     if (result.data) {
       onSuccess(result.data);

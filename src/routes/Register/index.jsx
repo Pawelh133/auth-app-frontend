@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Spin } from 'antd';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
@@ -43,13 +44,16 @@ const RegisterPage = () => {
   if (!displayForm) return null;;
 
   return (
-    <div className="login">
+    <div className="card register">
       <h1>Rejestracja</h1>
       <form onSubmit={onSubmit}>
         {isFetching && <div>Loading...</div>}
         <Input label='Email' onChange={(evt) => onChange('email', evt.target.value)} value={editorState.email} />
-        <Input label='Hasło' onChange={(evt) => onChange('password', evt.target.value)} value={editorState.password} />
-        <Button content="Rejestracja" type="submit" />
+        <Input label='Hasło' type="password" onChange={(evt) => onChange('password', evt.target.value)} value={editorState.password} />
+        {isFetching
+          ? <Spin />
+          : <Button content="Rejestracja" type="submit" />
+        }
       </form>
       <a href="/#" onClick={(e) => onRegisterRedirect(e)}>Powrót do logowania </a>
     </div>

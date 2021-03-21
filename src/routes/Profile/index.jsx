@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as session from '../../helpers/auth/session';
 import { useHistory } from 'react-router-dom';
+import { Spin } from 'antd';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -41,15 +42,17 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile">
-      <Button content="Wyloguj" onClick={logout} />
+    <div className="card profile">
       <h1>Profil użytkownika</h1>
       <form onSubmit={onSubmit}>
-        {isFetching && <div>Loading...</div>}
         <Input label='Imię' onChange={(evt) => onChange('name', evt.target.value)} value={updatedEditorState.name} />
         <Input label='Email' onChange={(evt) => onChange('email', evt.target.value)} value={updatedEditorState.email} />
-        <Button content="Zapisz" type="submit" />
+        {isFetching
+          ? <Spin />
+          : <Button content="Zapisz" type="submit" />
+        }
       </form>
+      <a href="/#" onClick={logout}>Wyloguj się</a>
     </div>
   )
 };

@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.min.css';
+import './styles/main.scss';
 
 import Routes from './routes';
 

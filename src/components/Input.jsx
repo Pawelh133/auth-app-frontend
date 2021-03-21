@@ -26,7 +26,7 @@ Input.defaultProps = {
   type: 'text',
   value: '',
   onBlur: () => { },
-  className: '',
+  className: 'regular-input',
 };
 
 export default Input;

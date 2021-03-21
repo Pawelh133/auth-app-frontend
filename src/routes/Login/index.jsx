@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Spin } from 'antd';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -21,6 +22,7 @@ const LoginPage = (props) => {
     } else {
       setDisplayForm(true);
     }
+  
     // eslint-disable-next-line
   }, []);
 
@@ -41,14 +43,17 @@ const LoginPage = (props) => {
   if (!displayForm) return null;;
 
   return (
-    <div className="login">
+    <div className="card login">
       <h1>Logowanie</h1>
       <form onSubmit={onSubmit}>
-        {isFetching && <div>Loading...</div>}
-        {isRegistered && <div>Twoje konto zostało założone</div>}
+        {isRegistered && <h2>Twoje konto zostało założone!</h2>}
         <Input label='Email' onChange={(evt) => setEmail(evt.target.value)} value={email} />
-        <Input label='Hasło' onChange={(evt) => setPassword(evt.target.value)} value={password} />
-        <Button content="Zaloguj" type="submit" />
+        <Input label='Hasło' type="password" onChange={(evt) => setPassword(evt.target.value)} value={password} />
+        {isFetching
+          ? <Spin />
+          : <Button busy={isFetching} content="Zaloguj" type="submit" />
+        }
+
       </form>
       <label>Nie posiadasz konta? <a href="/#" onClick={(e) => onRegisterRedirect(e)}>Zarejestruj się</a></label>
     </div>
