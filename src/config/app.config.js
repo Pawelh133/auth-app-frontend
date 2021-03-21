@@ -1,3 +1,3 @@
 // application
-export const API_URL = 'localhost:3000';
+export const API_URL = 'http://localhost:3000';
 export const ROUTING_PREFIX = '/';

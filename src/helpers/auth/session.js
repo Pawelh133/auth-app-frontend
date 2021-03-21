@@ -1,19 +1,14 @@
 export const setSession = (accessToken, refreshToken, accessTokenExpires) => {
-  // encryptLsData({ accessToken, refreshToken, accessTokenExpires: Date.now() + accessTokenExpires * 1000 - 10000 }, 'userData');
+  localStorage.setItem('userData', JSON.stringify({ accessToken, refreshToken, accessTokenExpires }));
 };
 
 export const getSession = () => {
-  // const userData = decryptLsData('userData');
+  const userData = localStorage.getItem('userData');
+  if (userData) {
+    return JSON.parse(userData);
+  }
 
-  // if (userData && userData.data) {
-  //   return {
-  //     accessToken: userData.data.accessToken,
-  //     accessTokenExpires: userData.data.accessTokenExpires,
-  //     refreshToken: userData.data.refreshToken,
-  //   };
-  // }
-
-  // return null;
+  return null;
 };
 
 export const clearSession = () => {
@@ -39,9 +34,8 @@ export const isAccessTokenValid = async () => {
 
 export const isRefreshTokenValid = () => {
   const refreshToken = getRefreshToken();
-  const expRefreshToken = getRefreshTokenExpires();
 
-  return refreshToken && expRefreshToken && Date.now() < expRefreshToken;
+  return refreshToken;
 };
 
 export const isTokenValid = () => {
@@ -66,10 +60,4 @@ const getRefreshToken = () => {
   const session = getSession();
 
   return session ? session.refreshToken : null;
-};
-
-const getRefreshTokenExpires = () => {
-  const session = getSession();
-
-  return session ? session.refreshTokenExpires : null;
 };

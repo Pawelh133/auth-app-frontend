@@ -6,8 +6,7 @@ import LoginPage from './Login';
 import RegisterPage from './Register';
 import NotFoundPage from './NotFound';
 import ProfilePage from './Profile';
-import AuthRequiredRoute from '../components/Route/AuthRequiredRoute';
-import NonAuthRequiredRoute from '../components/Route/NonAuthRequiredRoute';
+import NonAuthRequiredRoute from '../components/NonAuthRequiredRoute';
 
 export const routes = {
   login: new PathLink('/'),
@@ -16,18 +15,18 @@ export const routes = {
 };
 
 function Routes() {
-  console.log(routes);
+
   return (
     <Switch>
-      <NonAuthRequiredRoute
+      <Route
         exact
         path={routes.login.path}
         component={LoginPage} />
-      <NonAuthRequiredRoute
+      <Route
         exact
         path={routes.register.path}
         component={RegisterPage} />
-      <AuthRequiredRoute
+      <NonAuthRequiredRoute
         exact
         path={routes.profile.path}
         component={ProfilePage} />
