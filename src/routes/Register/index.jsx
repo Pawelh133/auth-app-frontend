@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { onRegister } from './register.action';
+import { onRegister } from '../../actions/register.actions';
 import { routes } from '../../routes';
 import { containsRefreshToken } from '../../helpers/auth/session';
 

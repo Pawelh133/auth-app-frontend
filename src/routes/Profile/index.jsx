@@ -4,8 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { getUserData, updateUserData } from './profile.action';
+import { getUserData, updateUserData } from '../../actions/profile.actions';
 import { routes } from '../../routes';
+import { onLogout } from '../../actions/auth.actions';
 
 const ProfilePage = () => {
   const history = useHistory();
@@ -34,6 +35,7 @@ const ProfilePage = () => {
   }
 
   const logout = () => {
+    onLogout();
     session.clearSession();
     history.push(routes.login.link());
   }

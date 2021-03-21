@@ -1,5 +1,6 @@
-import { clearSession } from '../auth/session';
+import * as session from '../../helpers/auth/session';
 import { urlRoute } from '../pathLinkUrl/url';
+import { routes } from '../../routes';
 
 export const serviceErrorRequestResponse = response => {
   if (response.data && response.data.message) {
@@ -12,9 +13,6 @@ export const serviceErrorRequestResponse = response => {
 }
 
 export const serviceUnauthorizedRequestResponse = () => {
-  clearSession();
-  window.location = urlRoute('/');
-}
-
-export const serviceErrorFetchData = () => {
+  session.clearSession();
+  window.location = urlRoute(routes.login.link());
 }

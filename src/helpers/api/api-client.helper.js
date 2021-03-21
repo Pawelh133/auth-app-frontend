@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 import { getSession, isAccessTokenValid } from '../auth/session';
-import { serviceUnauthorizedRequestResponse, serviceErrorRequestResponse, serviceErrorFetchData } from './apiClient.responseResolver';
-import { API_URL } from '../../config/app.config';
+import { serviceUnauthorizedRequestResponse, serviceErrorRequestResponse } from './apiClient.responseResolver';
 import responseStatusCodes from './responseStatusCodes.helper';
+import { API_URL } from '../../config/app.config';
 
 export const getAuth = async (path, config) => {
   const { data, ...header } = config;
@@ -44,12 +44,11 @@ const api = axios.create({
 
 const axiosCall = () => {
   return new Promise(async (resolve, reject) => {
-    const { accessToken } = getSession();
+    const session = getSession();
 
-    if (isAccessTokenValid()) {
-      return resolve(accessToken);
+    if (session && isAccessTokenValid()) {
+      return resolve(session.accessToken);
     } else {
-      //zle
       return reject();
     }
   });
@@ -77,8 +76,6 @@ const onError = error => {
       }
 
       serviceErrorRequestResponse(error.response);
-    } else {
-      serviceErrorFetchData();
     }
   }
 

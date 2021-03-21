@@ -1,7 +1,7 @@
-import * as api from '../../helpers/api/api-client.helper';
-import endpointsConfig from '../../config/endpoints.config';
-import requestConfig from '../../config/request.config';
-import interceptError from '../../helpers/interceptor/errorInterceptor';
+import * as api from '../helpers/api/api-client.helper';
+import endpointsConfig from '../config/endpoints.config';
+import requestConfig from '../config/request.config';
+import interceptError from '../helpers/interceptor/errorInterceptor';
 
 export const getUserData = async (setIsFetching, onSuccess) => {
   setIsFetching(true);

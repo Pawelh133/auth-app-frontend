@@ -1,9 +1,12 @@
+import { getNewAccessToken } from "../../actions/token.actions";
+
 export const setSession = (accessToken, refreshToken, accessTokenExpires) => {
   localStorage.setItem('userData', JSON.stringify({ accessToken, refreshToken, accessTokenExpires }));
 };
 
 export const getSession = () => {
   const userData = localStorage.getItem('userData');
+
   if (userData) {
     return JSON.parse(userData);
   }
@@ -17,9 +20,18 @@ export const clearSession = () => {
 
 export const isAccessTokenValid = async () => {
   if (!isTokenValid()) {
-    if (containsRefreshToken()) {
+    const refreshToken = getRefreshToken();
+
+    if (refreshToken) {
       try {
-        // const response = await to(refreshToken());
+        const result = await getNewAccessToken(refreshToken);
+
+        if (result.data) {
+          setSession(result.data.accessToken, result.data.refreshToken, result.data.accessTokenExpiresIn);
+          Promise.resolve(true);
+        } else {
+          Promise.resolve(false);
+        }
       } catch (e) {
         Promise.resolve(false);
       }
@@ -47,6 +59,7 @@ export const isTokenValid = () => {
 const getToken = () => {
   const session = getSession();
 
+
   return session ? session.accessToken : null;
 };
 
@@ -56,7 +69,7 @@ const getTokenExpires = () => {
   return session ? session.accessTokenExpires : null;
 };
 
-const getRefreshToken = () => {
+export const getRefreshToken = () => {
   const session = getSession();
 
   return session ? session.refreshToken : null;

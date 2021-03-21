@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { onLogin } from './login.action';
+import { onLogin } from '../../actions/auth.actions';
 import { routes } from '../../routes';
 import { containsRefreshToken } from '../../helpers/auth/session';
 
@@ -14,7 +14,7 @@ const LoginPage = (props) => {
   const [isFetching, setIsFetching] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
   const isRegistered = props?.location?.state?.registered === true;
-  console.log(props?.location?.state?.registered);
+
   useEffect(() => {
     if (containsRefreshToken()) {
       history.push(routes.profile.link());
