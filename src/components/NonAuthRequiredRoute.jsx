@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
-import { isRefreshTokenValid } from '../helpers/auth/session';
+import { containsRefreshToken } from '../helpers/auth/session';
 import { routes } from '../routes';
 
 const NonAuthRequiredRoute = props => {
   const { component, path, exact } = props;
 
-  const authorized = isRefreshTokenValid();
-
+  const authorized = containsRefreshToken();
   const nonAuthRequired = () => {
     return <Redirect to={routes.login.path} replace />;
   };

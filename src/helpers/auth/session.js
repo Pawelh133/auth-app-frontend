@@ -17,7 +17,7 @@ export const clearSession = () => {
 
 export const isAccessTokenValid = async () => {
   if (!isTokenValid()) {
-    if (isRefreshTokenValid()) {
+    if (containsRefreshToken()) {
       try {
         // const response = await to(refreshToken());
       } catch (e) {
@@ -32,10 +32,10 @@ export const isAccessTokenValid = async () => {
   return Promise.resolve(true);
 };
 
-export const isRefreshTokenValid = () => {
+export const containsRefreshToken = () => {
   const refreshToken = getRefreshToken();
 
-  return refreshToken;
+  return !!refreshToken;
 };
 
 export const isTokenValid = () => {
