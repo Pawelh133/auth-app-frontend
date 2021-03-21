@@ -11,10 +11,10 @@ export const getNewAccessToken = async (refreshToken) => {
   try {
     return await api.post(
       endpointsConfig.token,
-      config
+      config,
     );
   }
   catch (err) {
     return null;
   }
-}
+};

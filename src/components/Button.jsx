@@ -22,7 +22,7 @@ button.propTypes = {
 };
 
 button.defaultProps = {
-  type: "primary",
+  type: 'primary',
   content: '',
   className: '',
   groupButton: false,

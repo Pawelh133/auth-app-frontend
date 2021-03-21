@@ -47,8 +47,8 @@ const LoginPage = (props) => {
       <h1>Logowanie</h1>
       <form onSubmit={onSubmit}>
         {isRegistered && <h2>Twoje konto zostało założone!</h2>}
-        <Input label='Email' onChange={(evt) => setEmail(evt.target.value)} value={email} />
-        <Input label='Hasło' type="password" onChange={(evt) => setPassword(evt.target.value)} value={password} />
+        <Input label="Email:" onChange={(evt) => setEmail(evt.target.value)} value={email} />
+        <Input label="Hasło:" type="password" onChange={(evt) => setPassword(evt.target.value)} value={password} />
         {isFetching
           ? <Spin />
           : <Button busy={isFetching} content="Zaloguj" type="submit" />

@@ -23,4 +23,4 @@ export const onRegister = async (email, password, setIsFetching, onSuccess) => {
     interceptError(err);
     setIsFetching(false);
   }
-}
+};

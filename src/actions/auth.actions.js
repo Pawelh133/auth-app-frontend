@@ -14,7 +14,7 @@ export const onLogin = async (login, password, setIsFetching, onSuccess) => {
   try {
     const result = await api.post(
       endpointsConfig.login,
-      config
+      config,
     );
 
     if (result.data) {
@@ -29,16 +29,16 @@ export const onLogin = async (login, password, setIsFetching, onSuccess) => {
 
     setIsFetching(false);
   }
-}
+};
 
 export const onLogout = async () => {
   const config = {
     headers: { ...requestConfig.headers.applicationJson },
-    data: { refreshToken: session.getRefreshToken()}
+    data: { refreshToken: session.getRefreshToken()},
   };
 
   await api.post(
     endpointsConfig.logout,
-    config
+    config,
   );
-}
+};

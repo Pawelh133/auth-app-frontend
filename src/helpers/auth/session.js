@@ -1,4 +1,4 @@
-import { getNewAccessToken } from "../../actions/token.actions";
+import { getNewAccessToken } from '../../actions/token.actions';
 
 export const setSession = (accessToken, refreshToken, accessTokenExpires) => {
   localStorage.setItem('userData', JSON.stringify({ accessToken, refreshToken, accessTokenExpires }));

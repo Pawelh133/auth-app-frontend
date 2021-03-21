@@ -48,8 +48,8 @@ const RegisterPage = () => {
       <h1>Rejestracja</h1>
       <form onSubmit={onSubmit}>
         {isFetching && <div>Loading...</div>}
-        <Input label='Email' onChange={(evt) => onChange('email', evt.target.value)} value={editorState.email} />
-        <Input label='Hasło' type="password" onChange={(evt) => onChange('password', evt.target.value)} value={editorState.password} />
+        <Input label="Email:" onChange={(evt) => onChange('email', evt.target.value)} value={editorState.email} />
+        <Input label="Hasło:" type="password" onChange={(evt) => onChange('password', evt.target.value)} value={editorState.password} />
         {isFetching
           ? <Spin />
           : <Button content="Rejestracja" type="submit" />

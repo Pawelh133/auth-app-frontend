@@ -57,7 +57,7 @@ const axiosCall = () => {
 const onRequest = config => {
   return axiosCall().then(token => {
     config.headers = {
-      Authorization: token ? `Bearer ${token}` : ''
+      Authorization: token ? `Bearer ${token}` : '',
     };
 
     return Promise.resolve(config);

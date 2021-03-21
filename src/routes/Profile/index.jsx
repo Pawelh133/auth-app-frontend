@@ -35,7 +35,8 @@ const ProfilePage = () => {
     }
   }
 
-  const logout = () => {
+  const logout = (e) => {
+    e.preventDefault();
     onLogout();
     session.clearSession();
     history.push(routes.login.link());
@@ -45,14 +46,14 @@ const ProfilePage = () => {
     <div className="card profile">
       <h1>Profil użytkownika</h1>
       <form onSubmit={onSubmit}>
-        <Input label='Imię' onChange={(evt) => onChange('name', evt.target.value)} value={updatedEditorState.name} />
-        <Input label='Email' onChange={(evt) => onChange('email', evt.target.value)} value={updatedEditorState.email} />
+        <Input label="Imię:" onChange={(evt) => onChange('name', evt.target.value)} value={updatedEditorState.name} />
+        <Input label="Email:" onChange={(evt) => onChange('email', evt.target.value)} value={updatedEditorState.email} />
         {isFetching
           ? <Spin />
           : <Button content="Zapisz" type="submit" />
         }
       </form>
-      <a href="/#" onClick={logout}>Wyloguj się</a>
+      <a href="/#" onClick={(e) =>logout(e)}>Wyloguj się</a>
     </div>
   )
 };

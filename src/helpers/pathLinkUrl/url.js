@@ -1,4 +1,4 @@
-import { ROUTING_PREFIX } from "../../config/app.config";
+import { ROUTING_PREFIX } from '../../config/app.config';
 
 export const urlRoute = url => {
   return url

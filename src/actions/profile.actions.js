@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import * as api from '../helpers/api/api-client.helper';
 import endpointsConfig from '../config/endpoints.config';
 import requestConfig from '../config/request.config';
@@ -25,7 +27,7 @@ export const getUserData = async (setIsFetching, onSuccess) => {
     interceptError(err);
     setIsFetching(false);
   }
-}
+};
 
 
 export const updateUserData = async (data, setIsFetching, onSuccess) => {
@@ -43,6 +45,7 @@ export const updateUserData = async (data, setIsFetching, onSuccess) => {
 
     if (result.data) {
       onSuccess(result.data);
+      toast.success('Zmiany zostały dodane');
     }
 
     setIsFetching(false);
@@ -51,4 +54,4 @@ export const updateUserData = async (data, setIsFetching, onSuccess) => {
     interceptError(err);
     setIsFetching(false);
   }
-}
+};
